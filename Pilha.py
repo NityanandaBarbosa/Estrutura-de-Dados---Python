@@ -19,15 +19,18 @@ class Pilha:
             print("Removendo elemento do topo.")
             self.elementos[self.topo] = "None"
             self.topo += -1
-            
+
     def imprimir(self):
-        tam = self.topo
-        for i in range(tam+1):
-            print(self.elementos[tam])
-            tam += -1
+        if(Pilha.isEmpty(self)):
+            print("Pilha esta vazia!!")
+        else:
+            tam = self.topo
+            for i in range(tam+1):
+                print(self.elementos[tam])
+                tam += -1
 
     def isFull(self):
-        if self.topo == self.tamanho:
+        if self.topo == self.tamanho - 1:
             return True
         else:
             return False
@@ -39,8 +42,11 @@ class Pilha:
             return False
 
 p1 = Pilha(5)
+p1.imprimir()
 p1.push(45)
 p1.push(55)
-p1.imprimir()
-p1.pop()
+p1.push(50)
+p1.push(60)
+p1.push(12)
+p1.push(17)
 p1.imprimir()
