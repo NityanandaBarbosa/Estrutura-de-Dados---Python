@@ -3,7 +3,7 @@ class Pilha:
     def __init__(self, tamanho):
         self.topo = -1
         self.tamanho = tamanho
-        self.elementos = ["None"] * tamanho
+        self.elementos = [None] * tamanho
 
     def push(self, valor):
         if(Pilha.isFull(self)):
