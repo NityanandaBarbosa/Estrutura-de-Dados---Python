@@ -3,6 +3,7 @@ class No:
     def __init__(self):
         self.valor = None
         self.prox = None
+        self.anterior = None
     
     def setValor(self,valor):
         self.valor = valor
@@ -15,7 +16,13 @@ class No:
     
     def getProx(self):
         return self.prox
+    
+    def setAnterior(self, anterior):
+        self.anterior = anterior
 
+    def getAnterior(self):
+        return self.anterior
+        
 class Lista:
 
     def __init__(self):
@@ -65,6 +72,7 @@ class Lista:
             self.fim = novoNo
         else:
             self.fim.setProx(novoNo)
+            novoNo.setAnterior(self.fim)
             self.fim = novoNo
         self.quantidade += 1
 
@@ -82,11 +90,15 @@ class Lista:
                     aux = aux.getProx()
                 novoNo.setProx(aux)
                 if(aux == self.inicio):
+                    aux.setAnterior(novoNo)
                     self.inicio = novoNo
                 else:
                     anterior.setProx(novoNo)
+                    novoNo.setAnterior(anterior)
                     if(posicao == self.quantidade):
                        self.fim = novoNo
+                    else:
+                        aux.setAnterior(novoNo)
                 self.quantidade += 1
             else:
                 print("Posicao invalida !!")
@@ -126,16 +138,30 @@ class Lista:
                 print(saida)
                 print("")
 
-            
+    def imprimirInverso(self):
+        noAux = self.fim        
+        impressao = True
+        saida = ''
+        while(impressao == True):
+            if(noAux.getAnterior() != None):
+                saida += str(noAux.getValor()) + " "
+                noAux = noAux.getAnterior()
+            else:
+                saida += str(noAux.getValor())
+                impressao = False
+                print(saida)
+                print("")
 
 p1 = Lista()
 p1.inserir(45)
 p1.inserir(12)
+p1.imprimirInverso()
 p1.inserirPosicao(0,25)
+p1.imprimir()
 p1.inserirPosicao(3,9)
 p1.inserir(987)
-p1.remover(4)
 p1.inserirPosicao(4,456)
 p1.inserir(321)
 p1.imprimir()
+p1.imprimirInverso()
 print(p1.size())
